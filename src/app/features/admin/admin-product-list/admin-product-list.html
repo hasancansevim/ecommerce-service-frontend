@@ -1,0 +1,72 @@
+<div class="admin-container">
+
+    <div class="page-header">
+        <div class="header-content">
+            <h2>Ürün Yönetimi</h2>
+            <p>Mağazadaki tüm ürünleri buradan yönetebilirsiniz.</p>
+        </div>
+        <button class="btn-primary" routerLink="/admin/products/new">
+            <i class="icon-plus"></i> Yeni Ürün Ekle
+        </button>
+    </div>
+
+    <div class="table-card">
+        <div class="table-responsive">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>Ürün</th>
+                        <th>Kategori</th>
+                        <th>Fiyat</th>
+                        <th>Stok</th>
+                        <th>Durum</th>
+                        <th class="text-right">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="product-cell">
+                                <img [src]="product.imageUrl" alt="img" class="thumb">
+                                <div class="info">
+                                    <span class="name">{{ product.name }}</span>
+                                    <span class="slug">/{{ product.slug }}</span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>Elektronik</td>
+                        <td>
+                            <div class="price-cell">
+                                <span class="curr">{{ product.price }} ₺</span>
+                                <span class="base" *ngIf="product.basePrice > product.price">{{ product.basePrice }}
+                                    ₺</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <span class="stock-badge" [class.low]="product.stockQuantity < 10"
+                                [class.out]="product.stockQuantity === 0">
+                                {{ product.stockQuantity }} Adet
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="status-dot" [class.active]="product.isActive"></span>
+                            {{ product.isActive ? 'Yayında' : 'Pasif' }}
+                        </td>
+
+                        <td class="text-right">
+                            <button class="btn-icon edit" [routerLink]="['/admin/products/edit', product.id]">
+                                <i class="icon-edit"></i> Düzenle
+                            </button>
+                            <button class="btn-icon delete">
+                                <i class="icon-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$text-color: #333;
+$secondary-text: #666;
+$background-color: #f8f9fa;
+$surface-color: #fff;
+$border-color: #eee;
+$spacing-unit: 8px;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,62 @@
+.site-footer {
+  background: #1e293b; /* Çok koyu lacivert/gri */
+  color: #cbd5e1;
+  padding-top: 4rem;
+  font-size: 0.9rem;
+
+  .container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  h3 { color: #fff; margin-bottom: 1rem; }
+  h4 { color: #fff; margin-bottom: 1rem; font-size: 1rem; }
+
+  .footer-col {
+    ul {
+      list-style: none;
+      padding: 0;
+      
+      li { margin-bottom: 0.5rem; }
+      
+      a {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.2s;
+        
+        &:hover { color: #fff; }
+      }
+    }
+
+    &.contact-col {
+      p { margin-bottom: 0.75rem; display: flex; align-items: start; gap: 0.5rem; }
+      .address { line-height: 1.5; }
+    }
+  }
+
+  .sub-footer {
+    border-top: 1px solid #334155;
+    padding: 1.5rem 0;
+    text-align: center;
+    color: #64748b;
+    font-size: 0.8rem;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .site-footer .container {
+    grid-template-columns: 1fr; /* Mobilde tek sütun */
+    gap: 2.5rem;
+    text-align: center;
+  }
+  
+  .footer-col.contact-col p {
+    justify-content: center; /* İletişim bilgilerini ortala */
+  }
+}

@@ -1,0 +1,14 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Tüm ekran boyunu kapla */
+}
+
+.main-content {
+  flex: 1; /* Boş alanı doldurarak Footer'ı aşağı it */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* Background rengi global arka planla uyumlu olsun */
+  background-color: #f8fafc; 
+}

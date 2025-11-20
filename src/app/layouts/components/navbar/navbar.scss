@@ -1,0 +1,151 @@
+.navbar {
+  background: rgba(255, 255, 255, 0.95); /* Hafif transparan */
+  backdrop-filter: blur(10px); /* Arkası buzlu cam gibi */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #f1f5f9;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #0f172a;
+    .dot { color: #2563eb; font-size: 2rem; line-height: 0; }
+  }
+
+  .search-bar {
+  flex: 1;
+  max-width: 500px; /* Biraz daha genişlettik */
+  margin: 0 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    padding-right: 3rem; /* İkon yazının üstüne binmesin diye boşluk */
+    border: 1px solid #e2e8f0; /* Çok hafif gri çerçeve */
+    border-radius: 12px; /* Tam yuvarlak değil, hafif yumuşak köşe */
+    background: #f8fafc;
+    font-size: 0.95rem;
+    color: #334155;
+    transition: all 0.3s ease;
+
+    &::placeholder {
+      color: #94a3b8; /* Placeholder rengini yumuşattık */
+    }
+
+    &:focus {
+      outline: none;
+      background: #ffffff;
+      border-color: #2563eb; /* Odaklanınca mavi çerçeve */
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); /* Hafif mavi hale */
+    }
+  }
+
+  .search-btn {
+    position: absolute;
+    right: 10px;
+    height: 32px;
+    width: 32px;
+    background: transparent; /* O kaba mavilik gitti! */
+    border: none;
+    color: #64748b; /* İkon rengi gri */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    border-radius: 50%;
+
+    i { font-size: 1.1rem; }
+
+    &:hover {
+      color: #2563eb; /* Üstüne gelince ikon mavileşir */
+      background: rgba(37, 99, 235, 0.1); /* Çok hafif mavi zemin */
+      transform: scale(1.1); /* Hafif büyüme efekti */
+    }
+  }
+}
+
+  .nav-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    .nav-link {
+      text-decoration: none;
+      color: #475569;
+      font-weight: 600;
+      font-size: 0.9rem;
+      &:hover { color: #2563eb; }
+    }
+
+    .cart-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Görünürlük Ayarları */
+  background: #ffffff; 
+  border: 1px solid #e2e8f0; /* İnce gri çerçeve */
+  border-radius: 50%; /* Tam yuvarlak */
+  color: #334155; /* İKON RENGİ: Koyu Gri (Görünürlüğü bu sağlar) */
+  
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  /* İkon boyutu */
+  i {
+    font-size: 1.2rem;
+    pointer-events: none; /* Tıklamayı engellemesin */
+  }
+
+  /* Hover Efekti */
+  &:hover {
+    border-color: #2563eb;
+    color: #2563eb; /* İkon maviye döner */
+    background: #eff6ff; /* Zemin çok açık mavi olur */
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+  }
+
+  /* Kırmızı Bildirim Balonu */
+  .badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background: #ef4444; /* Kırmızı */
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #ffffff; /* Beyaz kontür ile ayrıştır */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+}
+  }
+}

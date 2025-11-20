@@ -1,0 +1,105 @@
+<div class="form-container">
+
+    <div class="form-header">
+        <h2>{{ isEditMode ? 'Ürünü Güncelle' : 'Yeni Ürün Oluştur' }}</h2>
+        <button class="btn-secondary" routerLink="/admin/products">İptal</button>
+    </div>
+
+    <form class="product-form">
+
+        <div class="form-grid">
+            <div class="form-section main-info">
+                <div class="form-group">
+                    <label>Ürün Adı</label>
+                    <input type="text" placeholder="Örn: Kablosuz Kulaklık" />
+                </div>
+
+                <div class="form-group">
+                    <label>Slug (URL Yolu)</label>
+                    <input type="text" placeholder="örn: kablosuz-kulaklik" />
+                </div>
+
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea rows="5" placeholder="Ürün özelliklerini detaylıca yazın..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select>
+                            <option>Elektronik</option>
+                            <option>Giyim</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Mağaza (Store)</label>
+                        <select>
+                            <option>Ana Depo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section side-info">
+
+                <div class="card">
+                    <h3>Fiyatlandırma</h3>
+                    <div class="form-group">
+                        <label>Satış Fiyatı (Price)</label>
+                        <div class="input-wrapper">
+                            <input type="number" />
+                            <span class="suffix">₺</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Liste Fiyatı (Base Price)</label>
+                        <div class="input-wrapper">
+                            <input type="number" />
+                            <span class="suffix">₺</span>
+                        </div>
+                        <small>İndirim oranı otomatik hesaplanır: %10</small>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Stok Durumu</h3>
+                    <div class="form-group">
+                        <label>Stok Adedi</label>
+                        <input type="number" />
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Görsel</h3>
+                    <div class="form-group">
+                        <label>Görsel URL</label>
+                        <input type="text" placeholder="https://..." />
+                    </div>
+                    <div class="img-preview">
+                        <span>Görsel Önizleme</span>
+                    </div>
+                </div>
+
+                <div class="card toggle-card">
+                    <div class="toggle-row">
+                        <label>Yayında (IsActive)</label>
+                        <input type="checkbox" class="toggle" checked />
+                    </div>
+                    <div class="toggle-row">
+                        <label>Öne Çıkar (IsFeatured)</label>
+                        <input type="checkbox" class="toggle" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary save-btn">
+                {{ isEditMode ? 'Değişiklikleri Kaydet' : 'Ürünü Oluştur' }}
+            </button>
+        </div>
+
+    </form>
+</div>

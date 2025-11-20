@@ -1,0 +1,97 @@
+.home-container {
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.hero-section {
+  background: linear-gradient(to right, #1e293b, #334155);
+  color: white;
+  padding: 4rem 0;
+  margin-bottom: 0; /* Kategorilerle birleşik dursun diye */
+  
+  .hero-content {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btn {
+      padding: 1rem 2rem;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+
+      &:hover { transform: scale(1.05); }
+    }
+  }
+}
+
+.products-section {
+  max-width: 1200px;
+  width: 90%;
+  margin: 2rem auto;
+  padding-bottom: 4rem;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+      color: #1e293b;
+    }
+
+    .view-all {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+  }
+
+  .grid-layout {
+    display: grid;
+    /* Responsive Grid Magic: */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 3rem 0;
+    .hero-content h1 { font-size: 2rem; }
+  }
+  
+  .products-section .grid-layout {
+    gap: 1rem;
+    /* Mobilde 2'li ızgara zorlaması (isteğe bağlı) ya da auto-fill */
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+@media (max-width: 480px) {
+  .products-section .grid-layout {
+     grid-template-columns: 1fr; /* Çok küçük ekranda tekli */
+  }
+}
