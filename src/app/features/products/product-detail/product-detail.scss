@@ -1,0 +1,215 @@
+.product-detail-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  min-height: 80vh;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: #64748b;
+  
+  a {
+    text-decoration: none;
+    color: #64748b;
+    transition: color 0.2s;
+    &:hover { color: #2563eb; }
+  }
+  .separator { margin: 0 0.5rem; color: #cbd5e1; }
+  .current { color: #1e293b; font-weight: 500; }
+}
+
+/* Grid Layout */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 50% - 50% */
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Sol Taraf - Görsel */
+.product-gallery {
+  .main-image {
+    background: #f8fafc;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1/1; /* Kare */
+    border: 1px solid #f1f5f9;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      &:hover { transform: scale(1.05); cursor: zoom-in; }
+    }
+
+    .discount {
+      position: absolute;
+      top: 20px; left: 20px;
+      background: #ef4444;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+    }
+  }
+}
+
+/* Sağ Taraf - Bilgi */
+.product-info {
+  .brand-tag {
+    color: #2563eb;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+    .text-yellow { color: #fbbf24; }
+    .count { color: #94a3b8; font-size: 0.9rem; margin-left: 0.5rem; }
+  }
+
+  .price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #f1f5f9;
+
+    .current-price {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .old-price {
+      font-size: 1.2rem;
+      color: #94a3b8;
+      text-decoration: line-through;
+    }
+  }
+
+  .description {
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+  }
+
+  .stock-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: #dc2626; /* Kırmızı (Stok yoksa) */
+    
+    &.in-stock { color: #16a34a; /* Yeşil */ }
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+
+    .quantity-selector {
+      display: flex;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+      
+      button {
+        width: 40px;
+        background: #f8fafc;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        &:hover { background: #e2e8f0; }
+      }
+      
+      input {
+        width: 50px;
+        text-align: center;
+        border: none;
+        border-left: 1px solid #e2e8f0;
+        border-right: 1px solid #e2e8f0;
+        font-weight: 600;
+        color: #1e293b;
+        &:focus { outline: none; }
+      }
+    }
+
+    .add-to-cart-btn {
+      flex: 1;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+
+      &:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35);
+      }
+    }
+
+    .wishlist-btn {
+      width: 50px;
+      border: 1px solid #e2e8f0;
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #64748b;
+      font-size: 1.2rem;
+      transition: all 0.2s;
+      &:hover { border-color: #ef4444; color: #ef4444; }
+    }
+  }
+
+  .meta-info p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    strong { color: #334155; margin-right: 0.5rem; }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .detail-grid {
+    grid-template-columns: 1fr; /* Tek kolon */
+    gap: 2rem;
+  }
+  .product-info .title { font-size: 1.75rem; }
+  .actions { flex-wrap: wrap; }
+  .actions .add-to-cart-btn { width: 100%; flex: auto; }
+}

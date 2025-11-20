@@ -1,0 +1,78 @@
+<div class="product-detail-container">
+
+    <nav class="breadcrumb">
+        <a routerLink="/">Anasayfa</a>
+        <span class="separator">/</span>
+        <a href="#">Elektronik</a> <span class="separator">/</span>
+        <span class="current">{{ product.name }}</span>
+    </nav>
+
+    <div class="detail-grid">
+
+        <div class="product-gallery">
+            <div class="main-image">
+                <span class="badge discount" *ngIf="product.discount > 0">
+                    %{{ product.discount }} İndirim
+                </span>
+                <img [src]="product.imageUrl || 'https://placehold.co/600x600/f1f5f9/94a3b8?text=Urun'"
+                    [alt]="product.name">
+            </div>
+        </div>
+
+        <div class="product-info">
+            <span class="brand-tag">Ecommerce Service</span>
+            <h1 class="title">{{ product.name }}</h1>
+
+            <div class="rating">
+                <i class="fa-solid fa-star text-yellow"></i>
+                <i class="fa-solid fa-star text-yellow"></i>
+                <i class="fa-solid fa-star text-yellow"></i>
+                <i class="fa-solid fa-star text-yellow"></i>
+                <i class="fa-solid fa-star-half-stroke text-yellow"></i>
+                <span class="count">(42 Değerlendirme)</span>
+            </div>
+
+            <div class="price-block">
+                <div class="current-price">{{ product.price }} ₺</div>
+                <div class="old-price" *ngIf="product.basePrice > product.price">
+                    {{ product.basePrice }} ₺
+                </div>
+            </div>
+
+            <p class="description">
+                <!-- {{ product.description }} -->
+                Bu ürün, modern yaşam standartlarına uygun olarak tasarlanmıştır.
+                Yüksek kaliteli malzemeler ve üstün işçilik ile üretilmiştir.
+            </p>
+
+            <div class="stock-status" [class.in-stock]="product.stockQuantity > 0">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ product.stockQuantity > 0 ? 'Stokta Var' : 'Tükendi' }}
+            </div>
+
+            <div class="actions">
+                <div class="quantity-selector">
+                    <button (click)="quantity = quantity > 1 ? quantity - 1 : 1">-</button>
+                    <input type="number" [value]="quantity" readonly>
+                    <button (click)="quantity = quantity + 1">+</button>
+                </div>
+
+                <button class="add-to-cart-btn" [disabled]="product.stockQuantity === 0">
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Sepete Ekle
+                </button>
+
+                <button class="wishlist-btn">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+
+            <div class="meta-info">
+                <p><strong>Ürün Kodu:</strong> #{{ product.id }}</p>
+                <p><strong>Kategori:</strong> Elektronik</p>
+                <p><strong>Gönderim:</strong> 24 Saat İçinde Kargoda</p>
+            </div>
+
+        </div>
+    </div>
+</div>
