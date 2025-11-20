@@ -2,11 +2,6 @@
     <div class="categories-scroll">
         <button class="cat-pill active">Tümü</button>
 
-        <button class="cat-pill">Elektronik</button>
-        <button class="cat-pill">Giyim</button>
-        <button class="cat-pill">Ev & Yaşam</button>
-        <button class="cat-pill">Spor</button>
-        <button class="cat-pill">Kitap</button>
-        <button class="cat-pill">Kozmetik</button>
+        <button *ngFor="let category of categories" class="cat-pill">{{category.name}}</button>
     </div>
 </div>

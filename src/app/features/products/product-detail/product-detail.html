@@ -1,4 +1,4 @@
-<div class="product-detail-container">
+<div class="product-detail-container" *ngIf="product">
 
     <nav class="breadcrumb">
         <a routerLink="/">Anasayfa</a>
@@ -6,6 +6,10 @@
         <a href="#">Elektronik</a> <span class="separator">/</span>
         <span class="current">{{ product.name }}</span>
     </nav>
+
+    <div *ngIf="!product" class="loading-container">
+        <p>Ürün yükleniyor...</p>
+    </div>
 
     <div class="detail-grid">
 
@@ -40,9 +44,7 @@
             </div>
 
             <p class="description">
-                <!-- {{ product.description }} -->
-                Bu ürün, modern yaşam standartlarına uygun olarak tasarlanmıştır.
-                Yüksek kaliteli malzemeler ve üstün işçilik ile üretilmiştir.
+                {{ product.description }}
             </p>
 
             <div class="stock-status" [class.in-stock]="product.stockQuantity > 0">

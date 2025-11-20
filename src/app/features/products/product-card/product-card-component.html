@@ -1,4 +1,4 @@
-<div class="product-card">
+<div *ngFor="let product of products" class="product-card" [routerLink]="['/products', product.id]">
     <div class="card-img-wrapper">
         <span class="badge discount" *ngIf="product.discount > 0">
             %{{ product.discount }}
