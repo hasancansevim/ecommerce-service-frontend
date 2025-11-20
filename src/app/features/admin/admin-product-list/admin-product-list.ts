@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { Product } from '../../../shared/models/product';
-import { dateTimestampProvider } from 'rxjs/internal/scheduler/dateTimestampProvider';
 @Component({
   selector: 'app-admin-product-list',
   standalone: true,
@@ -15,19 +14,19 @@ export class AdminProductList {
   product: Product = {
     id: 1,
     name: 'abc',
-    basePrice: 100,
+    base_price: 100,
     price: 80,
     discount: 20,
-    imageUrl: 'url',
-    stockQuantity: 40,
+    image_url: 'url',
+    stock_quantity: 40,
     slug: 'abc',
-    isActive: true,
-    categoryId: 1,
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    is_active: true,
+    category_id: 1,
+    created_at: new Date(),
+    updated_at: new Date(),
     description: 'dnasdn',
-    isFeatured: true,
-    metaDescription: 'dnasldn',
-    storeId: 5,
+    is_featured: true,
+    meta_description: 'dnasldn',
+    store_id: 5,
   };
 }

@@ -1,41 +1,58 @@
 <div class="form-container">
-
     <div class="form-header">
         <h2>{{ isEditMode ? 'Ürünü Güncelle' : 'Yeni Ürün Oluştur' }}</h2>
-        <button class="btn-secondary" routerLink="/admin/products">İptal</button>
+        <button type="button" class="btn-secondary" routerLink="/admin/products">İptal</button>
     </div>
 
-    <form class="product-form">
-
+    <form [formGroup]="productAddForm" class="product-form" (ngSubmit)="addProduct()">
         <div class="form-grid">
             <div class="form-section main-info">
+
+                <!-- Ürün Adı -->
                 <div class="form-group">
-                    <label>Ürün Adı</label>
-                    <input type="text" placeholder="Örn: Kablosuz Kulaklık" />
+                    <label for="name">Ürün Adı</label>
+                    <input type="text" id="name" formControlName="name" placeholder="Örn: Kablosuz Kulaklık" />
                 </div>
 
+                <!-- Slug -->
                 <div class="form-group">
-                    <label>Slug (URL Yolu)</label>
-                    <input type="text" placeholder="örn: kablosuz-kulaklik" />
+                    <label for="slug">Slug (URL Yolu)</label>
+                    <input type="text" id="slug" formControlName="slug" placeholder="örn: kablosuz-kulaklik" />
                 </div>
 
+                <!-- Meta Description -->
                 <div class="form-group">
-                    <label>Açıklama</label>
-                    <textarea rows="5" placeholder="Ürün özelliklerini detaylıca yazın..."></textarea>
+                    <label for="metaDescription">Meta Description</label>
+                    <input type="text" id="metaDescription" formControlName="metaDescription"
+                        placeholder="SEO için kısa açıklama" />
                 </div>
 
+                <!-- Açıklama -->
+                <div class="form-group">
+                    <label for="description">Açıklama</label>
+                    <textarea id="description" formControlName="description" rows="5"
+                        placeholder="Ürün özelliklerini detaylıca yazın..."></textarea>
+                </div>
+
+                <!-- Kategori ve Mağaza -->
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Kategori</label>
-                        <select>
-                            <option>Elektronik</option>
-                            <option>Giyim</option>
+                        <label for="categoryId">Kategori</label>
+                        <select id="categoryId" formControlName="categoryId">
+                            <option value="">Kategori Seçin</option>
+                            <option *ngFor="let category of categories" [value]="category.id">
+                                {{category.name}}
+                            </option>
                         </select>
                     </div>
+
                     <div class="form-group">
-                        <label>Mağaza (Store)</label>
-                        <select>
-                            <option>Ana Depo</option>
+                        <label for="storeId">Mağaza (Store)</label>
+                        <select id="storeId" formControlName="storeId">
+                            <option value="">Mağaza Seçin</option>
+                            <option *ngFor="let store of stores" [value]="store.id">
+                                {{store.name}}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -43,52 +60,59 @@
 
             <div class="form-section side-info">
 
+                <!-- Fiyatlandırma -->
                 <div class="card">
                     <h3>Fiyatlandırma</h3>
                     <div class="form-group">
-                        <label>Satış Fiyatı (Price)</label>
+                        <label for="price">Satış Fiyatı (Price)</label>
                         <div class="input-wrapper">
-                            <input type="number" />
+                            <input id="price" type="number" formControlName="price" min="0" step="0.01" />
                             <span class="suffix">₺</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Liste Fiyatı (Base Price)</label>
+                        <label for="basePrice">Liste Fiyatı (Base Price)</label>
                         <div class="input-wrapper">
-                            <input type="number" />
+                            <input id="basePrice" type="number" formControlName="basePrice" min="0" step="0.01" />
                             <span class="suffix">₺</span>
                         </div>
-                        <small>İndirim oranı otomatik hesaplanır: %10</small>
+                        <small *ngIf="productAddForm.value.price && productAddForm.value.basePrice">
+                            İndirim oranı: %{{ calculateDiscount(productAddForm.value.price,
+                            productAddForm.value.basePrice) }}
+                        </small>
                     </div>
                 </div>
 
+                <!-- Stok -->
                 <div class="card">
                     <h3>Stok Durumu</h3>
                     <div class="form-group">
-                        <label>Stok Adedi</label>
-                        <input type="number" />
+                        <label for="stockQuantity">Stok Adedi</label>
+                        <input id="stockQuantity" type="number" formControlName="stockQuantity" min="0" />
                     </div>
                 </div>
 
+                <!-- Görsel -->
                 <div class="card">
                     <h3>Görsel</h3>
                     <div class="form-group">
-                        <label>Görsel URL</label>
-                        <input type="text" placeholder="https://..." />
+                        <label for="imageUrl">Görsel URL</label>
+                        <input id="imageUrl" type="text" formControlName="imageUrl" placeholder="https://..." />
                     </div>
-                    <div class="img-preview">
-                        <span>Görsel Önizleme</span>
+                    <div class="img-preview" *ngIf="productAddForm.value.imageUrl">
+                        <img [src]="productAddForm.value.imageUrl" alt="Önizleme" class="preview-image">
                     </div>
                 </div>
 
+                <!-- Toggle'lar -->
                 <div class="card toggle-card">
                     <div class="toggle-row">
-                        <label>Yayında (IsActive)</label>
-                        <input type="checkbox" class="toggle" checked />
+                        <label for="isActive">Yayında (IsActive)</label>
+                        <input id="isActive" type="checkbox" formControlName="isActive" class="toggle" />
                     </div>
                     <div class="toggle-row">
-                        <label>Öne Çıkar (IsFeatured)</label>
-                        <input type="checkbox" class="toggle" />
+                        <label for="isFeatured">Öne Çıkar (IsFeatured)</label>
+                        <input id="isFeatured" type="checkbox" formControlName="isFeatured" class="toggle" />
                     </div>
                 </div>
 
@@ -96,10 +120,9 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn-primary save-btn">
+            <button type="submit" class="btn-primary save-btn" [disabled]="productAddForm.invalid">
                 {{ isEditMode ? 'Değişiklikleri Kaydet' : 'Ürünü Oluştur' }}
             </button>
         </div>
-
     </form>
 </div>

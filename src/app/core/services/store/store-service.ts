@@ -1,0 +1,18 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { Store } from '../../../shared/models/store';
+import { ListResponseModel } from '../../../shared/models/response-models/list-response-model';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class StoreService {
+  apiUrl = 'http://localhost:8080/api/v1/stores';
+
+  constructor(private httpClient: HttpClient) {}
+
+  getStores(): Observable<ListResponseModel<Store>> {
+    return this.httpClient.get<ListResponseModel<Store>>(this.apiUrl);
+  }
+}

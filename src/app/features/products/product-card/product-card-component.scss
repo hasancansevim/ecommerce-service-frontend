@@ -1,3 +1,8 @@
+:host {
+  display: block;
+  height: 100%; /* Grid hücresini tam doldurması için */
+}
+
 .product-card {
   background: #fff;
   border: none; /* Çizgiyi kaldırdık, gölgeyle ayıracağız */

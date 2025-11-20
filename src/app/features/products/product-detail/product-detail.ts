@@ -27,8 +27,8 @@ export class ProductDetail implements OnInit {
   }
 
   getProductById(id: number): void {
-    this.productService.getProductById(id).subscribe((data) => {
-      this.product = data;
+    this.productService.getProductById(id).subscribe((response) => {
+      this.product = response.data;
     });
   }
 }

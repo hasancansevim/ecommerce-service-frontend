@@ -19,8 +19,8 @@ export class Categories implements OnInit {
   }
 
   getCategories(): void {
-    this.categoryService.getCategories().subscribe((data) => {
-      this.categories = data;
+    this.categoryService.getCategories().subscribe((result) => {
+      this.categories = result.data;
     });
   }
 }

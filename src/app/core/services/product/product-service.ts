@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Product } from '../../../shared/models/product';
+import { ListResponseModel } from '../../../shared/models/response-models/list-response-model';
+import { SingleResponseModel } from '../../../shared/models/response-models/single-response-model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,53 +13,17 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getProducts(): Observable<Product[]> {
-    return this.httpClient.get<any[]>(this.apiUrl).pipe(
-      map((products) =>
-        products.map((product) => ({
-          id: product.Id,
-          name: product.Name,
-          slug: product.Slug,
-          description: product.Description,
-          price: product.Price,
-          basePrice: product.BasePrice,
-          discount: product.Discount,
-          imageUrl: product.ImageUrl,
-          metaDescription: product.MetaDescription,
-          stockQuantity: product.StockQuantity,
-          isActive: product.IsActive,
-          isFeatured: product.IsFeatured,
-          categoryId: product.CategoryId,
-          storeId: product.StoreId,
-          createdAt: new Date(product.CreatedAt),
-          updatedAt: new Date(product.UpdatedAt),
-        }))
-      )
-    );
+  getProducts(): Observable<ListResponseModel<Product>> {
+    return this.httpClient.get<ListResponseModel<Product>>(this.apiUrl);
   }
 
-  getProductById(id: number): Observable<Product> {
+  getProductById(id: number): Observable<SingleResponseModel<Product>> {
     let newUrl = this.apiUrl + '/' + id;
 
-    return this.httpClient.get<any>(newUrl).pipe(
-      map((product) => ({
-        id: product.Id,
-        name: product.Name,
-        slug: product.Slug,
-        description: product.Description,
-        price: product.Price,
-        basePrice: product.BasePrice,
-        discount: product.Discount,
-        imageUrl: product.ImageUrl,
-        metaDescription: product.MetaDescription,
-        stockQuantity: product.StockQuantity,
-        isActive: product.IsActive,
-        isFeatured: product.IsFeatured,
-        categoryId: product.CategoryId,
-        storeId: product.StoreId,
-        createdAt: new Date(product.CreatedAt),
-        updatedAt: new Date(product.UpdatedAt),
-      }))
-    );
+    return this.httpClient.get<SingleResponseModel<Product>>(newUrl);
+  }
+
+  addProduct(product: Product): Observable<SingleResponseModel<Product>> {
+    return this.httpClient.post<SingleResponseModel<Product>>(this.apiUrl, product);
   }
 }

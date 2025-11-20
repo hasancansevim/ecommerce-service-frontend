@@ -4,15 +4,15 @@ export interface Product {
   slug: string;
   description: string;
   price: number;
-  basePrice: number;
+  base_price: number;
   discount: number;
-  imageUrl: string;
-  metaDescription: string;
-  stockQuantity: number;
-  isActive: boolean;
-  isFeatured: boolean;
-  categoryId: number;
-  storeId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  image_url: string;
+  meta_description: string;
+  stock_quantity: number;
+  is_active: boolean;
+  is_featured: boolean;
+  category_id: number;
+  store_id: number;
+  created_at: Date;
+  updated_at: Date;
 }

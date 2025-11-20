@@ -18,7 +18,7 @@
                 <span class="badge discount" *ngIf="product.discount > 0">
                     %{{ product.discount }} İndirim
                 </span>
-                <img [src]="product.imageUrl || 'https://placehold.co/600x600/f1f5f9/94a3b8?text=Urun'"
+                <img [src]="product.image_url || 'https://placehold.co/600x600/f1f5f9/94a3b8?text=Urun'"
                     [alt]="product.name">
             </div>
         </div>
@@ -38,8 +38,8 @@
 
             <div class="price-block">
                 <div class="current-price">{{ product.price }} ₺</div>
-                <div class="old-price" *ngIf="product.basePrice > product.price">
-                    {{ product.basePrice }} ₺
+                <div class="old-price" *ngIf="product.base_price > product.price">
+                    {{ product.base_price }} ₺
                 </div>
             </div>
 
@@ -47,9 +47,9 @@
                 {{ product.description }}
             </p>
 
-            <div class="stock-status" [class.in-stock]="product.stockQuantity > 0">
+            <div class="stock-status" [class.in-stock]="product.stock_quantity > 0">
                 <i class="fa-solid fa-circle-check"></i>
-                {{ product.stockQuantity > 0 ? 'Stokta Var' : 'Tükendi' }}
+                {{ product.stock_quantity > 0 ? 'Stokta Var' : 'Tükendi' }}
             </div>
 
             <div class="actions">
@@ -59,7 +59,7 @@
                     <button (click)="quantity = quantity + 1">+</button>
                 </div>
 
-                <button class="add-to-cart-btn" [disabled]="product.stockQuantity === 0">
+                <button class="add-to-cart-btn" [disabled]="product.stock_quantity === 0">
                     <i class="fa-solid fa-cart-plus"></i>
                     Sepete Ekle
                 </button>
