@@ -1,0 +1,51 @@
+@use'../admin-product-list/admin-product-list.scss';
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .avatar-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+    }
+    
+    .info {
+        display: flex; 
+        flex-direction: column;
+        .name { font-weight: 600; color: var(--text-main); }
+        .id { font-size: 0.75rem; color: var(--text-muted); }
+    }
+}
+
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &.admin {
+        background: rgba(239, 68, 68, 0.1); /* Kırmızı Opak */
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    &.customer {
+        background: rgba(59, 130, 246, 0.1); /* Mavi Opak */
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+}

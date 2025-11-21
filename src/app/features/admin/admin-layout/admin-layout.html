@@ -1,0 +1,58 @@
+<div class="admin-wrapper">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3>Admin<span>Panel</span></h3>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-item">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Özet (Dashboard)</span>
+            </a>
+
+            <div class="nav-section">YÖNETİM</div>
+
+            <a routerLink="/admin/products" routerLinkActive="active" class="nav-item">
+                <i class="fa-solid fa-box"></i>
+                <span>Ürünler</span>
+            </a>
+
+            <a routerLink="/admin/categories" routerLinkActive="active" class="nav-item">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Kategoriler</span>
+            </a>
+
+            <a routerLink="/admin/stores" routerLinkActive="active" class="nav-item">
+                <i class="fa-solid fa-store"></i>
+                <span>Mağazalar</span>
+            </a>
+
+            <div class="nav-section">AYARLAR</div>
+
+            <a routerLink="/admin/users" routerLinkActive="active" class="nav-item">
+                <i class="fa-solid fa-users"></i>
+                <span>Kullanıcılar</span>
+            </a>
+
+            <a href="#" class="nav-item logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>Çıkış Yap</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="admin-content">
+        <header class="admin-header">
+            <div class="welcome">
+                Hoşgeldin, <strong>Admin</strong>
+            </div>
+            <button class="site-btn" routerLink="/">Siteye Git <i class="fa-solid fa-external-link-alt"></i></button>
+        </header>
+
+        <div class="page-content">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+
+</div>

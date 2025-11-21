@@ -1,0 +1,170 @@
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* --- 1. STATS CARDS --- */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  .stat-card {
+    background: var(--bg-card); /* Dark Mode Uyumlu */
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s;
+
+    &:hover { transform: translateY(-3px); }
+
+    .stat-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+
+      /* İkon Renkleri */
+      &.green { background: #dcfce7; color: #166534; }
+      &.blue { background: #dbeafe; color: #1e40af; }
+      &.purple { background: #f3e8ff; color: #6b21a8; }
+      &.orange { background: #ffedd5; color: #9a3412; }
+    }
+
+    .stat-info {
+      .label { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.3rem; }
+      .value { color: var(--text-main); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; }
+      
+      .trend {
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        &.up { color: #16a34a; }
+        &.down { color: #dc2626; }
+        &.neutral { color: var(--text-muted); }
+      }
+    }
+  }
+}
+
+/* --- 2. CHARTS AREA --- */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Sol geniş, sağ dar */
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  .chart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      h4 { color: var(--text-main); font-size: 1.1rem; }
+      
+      select {
+        padding: 0.4rem;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        background: var(--bg-input);
+        color: var(--text-main);
+      }
+    }
+
+    .chart-placeholder {
+      height: 300px;
+      background: var(--bg-input);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      gap: 1rem;
+      i { font-size: 3rem; opacity: 0.5; }
+    }
+  }
+}
+
+/* --- 3. RECENT ORDERS --- */
+.recent-orders {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    h4 { color: var(--text-main); font-size: 1.1rem; }
+    
+    .btn-text {
+      background: none; border: none;
+      color: var(--primary-color);
+      font-weight: 600;
+      cursor: pointer;
+      &:hover { text-decoration: underline; }
+    }
+  }
+
+  .modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    th {
+      text-align: left;
+      padding: 1rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.85rem;
+    }
+
+    td {
+      padding: 1rem;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .status {
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      
+      &.pending { background: #ffedd5; color: #9a3412; }
+      &.shipped { background: #dbeafe; color: #1e40af; }
+      &.delivered { background: #dcfce7; color: #166534; }
+      &.cancelled { background: #fee2e2; color: #991b1b; }
+    }
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .charts-grid { grid-template-columns: 1fr; } /* Grafikler alt alta */
+}
+@media (max-width: 768px) {
+  .table-responsive { overflow-x: auto; }
+}

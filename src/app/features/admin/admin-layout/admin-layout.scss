@@ -1,0 +1,133 @@
+.admin-wrapper {
+  display: flex;
+  align-items: flex-start; /* ÖNEMLİ: Sidebar'ın uzamasını engelle, sticky çalışsın */
+  min-height: 100vh;
+  background: var(--bg-body);
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 260px;
+  /* Flex item olduğu için büzüşmesini engelle */
+  flex-shrink: 0; 
+  background: var(--bg-card);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  
+  /* MODERN SABİTLEME: STICKY */
+  position: sticky;
+  top: 80px; /* Navbar'ın altından başla ve oraya yapış */
+  height: calc(100vh - 80px); /* Ekranın kalanı kadar yer kapla */
+  
+  z-index: 90;
+  overflow-y: auto;
+
+  .sidebar-header {
+    height: 70px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    
+    h3 {
+      font-size: 1.5rem;
+      color: var(--text-main);
+      span { color: var(--primary-color); font-weight: 800; }
+    }
+  }
+
+  .sidebar-nav {
+    padding: 1.5rem 1rem;
+    flex: 1;
+    
+    .nav-section {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin: 1.5rem 0 0.5rem 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem 1rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      transition: all 0.2s;
+      font-weight: 500;
+
+      i { width: 20px; text-align: center; }
+
+      &:hover {
+        background: var(--bg-input);
+        color: var(--text-main);
+      }
+
+      &.active {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      }
+
+      &.logout {
+        margin-top: 2rem;
+        color: #ef4444;
+        &:hover { background: #fef2f2; }
+      }
+    }
+  }
+}
+
+/* --- SAĞ İÇERİK ALANI --- */
+.admin-content {
+  /* Flex: 1 diyerek kalan tüm alanı kaplamasını sağlıyoruz */
+  flex: 1;
+  /* ARTIK MARGIN-LEFT YOK! Flexbox yan yana koydu zaten. */
+  display: flex;
+  flex-direction: column;
+  
+  /* İçerik genişliğini sınırla ki tablo taşmasın */
+  width: 0; 
+  min-width: 0;
+
+  .admin-header {
+    height: 70px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+
+    .welcome { color: var(--text-main); }
+    
+    .site-btn {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      &:hover { border-color: var(--primary-color); color: var(--primary-color); }
+    }
+  }
+
+  .page-content {
+    padding: 2rem;
+    overflow-x: hidden; 
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .admin-content { width: 100%; }
+}

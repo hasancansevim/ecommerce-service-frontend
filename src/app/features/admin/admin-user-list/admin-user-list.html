@@ -1,0 +1,65 @@
+<div class="admin-container">
+    <div class="page-header">
+        <div class="header-content">
+            <h2>Kullanıcılar</h2>
+            <p>Sistemdeki kayıtlı üyeleri ve yetkilerini yönetin.</p>
+        </div>
+        <button class="btn-primary" routerLink="/admin/users/new">
+            <i class="fa-solid fa-user-plus"></i> Yeni Kullanıcı
+        </button>
+    </div>
+
+    <div class="table-card">
+        <div class="table-responsive">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>Kullanıcı</th>
+                        <th>E-Posta</th>
+                        <th>Yetki (Role)</th>
+                        <th>Durum</th>
+                        <th class="text-right">İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>
+                            <div class="user-cell">
+                                <div class="avatar-circle">{{ user.name.charAt(0) }}</div>
+                                <div class="info">
+                                    <span class="name">{{ user.name }}</span>
+                                    <span class="id">ID: #{{ user.id }}</span>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>{{ user.email }}</td>
+
+                        <td>
+                            <span class="role-badge" [class.admin]="user.role === 'admin'"
+                                [class.customer]="user.role === 'user'">
+                                <i class="fa-solid"
+                                    [ngClass]="user.role === 'admin' ? 'fa-shield-halved' : 'fa-user'"></i>
+                                {{ user.role === 'admin' ? 'Yönetici' : 'Müşteri' }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="status-dot" [class.active]="user.isActive"></span>
+                            {{ user.isActive ? 'Aktif' : 'Engelli' }}
+                        </td>
+
+                        <td class="text-right">
+                            <button class="btn-icon edit" [routerLink]="['/admin/users/edit', user.id]">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </button>
+                            <button class="btn-icon delete" (click)="deleteUser(user)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

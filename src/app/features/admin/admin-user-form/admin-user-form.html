@@ -1,0 +1,76 @@
+<div class="form-container">
+    <div class="form-header">
+        <h2>{{ isEditMode ? 'Kullanıcıyı Düzenle' : 'Yeni Kullanıcı Oluştur' }}</h2>
+        <button class="btn-secondary" routerLink="/admin/users">İptal</button>
+    </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+        <div class="form-grid">
+
+            <div class="form-section main-info">
+                <div class="card">
+                    <h3>Kimlik Bilgileri</h3>
+
+                    <div class="form-group">
+                        <label>Ad Soyad</label>
+                        <input type="text" formControlName="name" placeholder="Örn: Ali Veli">
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-Posta Adresi</label>
+                        <input type="email" formControlName="email" placeholder="ornek@mail.com">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Yetki (Role)</label>
+                            <select formControlName="role">
+                                <option value="user">Müşteri (User)</option>
+                                <option value="admin">Yönetici (Admin)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="display: flex; align-items: center; padding-top: 1.5rem;">
+                            <div class="toggle-row">
+                                <input type="checkbox" formControlName="isActive" class="toggle" id="uActive">
+                                <label for="uActive" style="margin:0 0 0 10px; cursor:pointer;">Aktif Kullanıcı</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section side-info">
+                <div class="card">
+                    <h3>Güvenlik</h3>
+
+                    <div class="form-group">
+                        <label>Şifre</label>
+                        <div class="input-wrapper">
+                            <input type="password" formControlName="password" placeholder="******">
+                            <span class="suffix"><i class="fa-solid fa-lock"></i></span>
+                        </div>
+                        <small *ngIf="isEditMode" style="color: #f59e0b;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> Şifreyi değiştirmek istemiyorsanız boş
+                            bırakın.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Şifre Tekrar</label>
+                        <div class="input-wrapper">
+                            <input type="password" formControlName="confirmPassword" placeholder="******">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary save-btn" [disabled]="userForm.invalid">
+                {{ isEditMode ? 'Güncelle' : 'Kaydet' }}
+            </button>
+        </div>
+    </form>
+</div>
