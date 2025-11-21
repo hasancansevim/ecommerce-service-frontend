@@ -5,9 +5,11 @@ import { AdminProductForm } from './features/admin/admin-product-form/admin-prod
 import { ProductDetail } from './features/products/product-detail/product-detail';
 import { Login } from './features/auth/login/login';
 import { Register } from './features/auth/register/register';
+import { ProductList } from './features/products/product-list/product-list';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'products', component: ProductList },
   {
     path: 'admin',
     children: [

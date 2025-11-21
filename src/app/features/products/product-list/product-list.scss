@@ -1,0 +1,271 @@
+.shop-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.mobile-filter-toggle {
+  display: none; /* Masaüstünde gizli */
+}
+
+/* --- SIDEBAR & FILTERS --- */
+.filters-sidebar {
+  position: sticky;
+  top: 100px; /* Navbar yüksekliğine göre ayarla, scroll edince yapışır */
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  
+  .filter-group {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    
+    &:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .filter-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+/* Kategori Listesi */
+.category-list {
+  list-style: none;
+  
+  li {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+
+    span { font-size: 0.8rem; opacity: 0.7; }
+
+    &:hover {
+      background: var(--bg-input);
+      color: var(--text-main);
+    }
+
+    &.active {
+      background: var(--bg-input);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+  }
+}
+
+/* Fiyat Alanı */
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  .price-field {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    &:focus { outline: none; border-color: var(--primary-color); }
+  }
+  
+  .dash { color: var(--text-muted); }
+
+  .go-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    &:hover { filter: brightness(1.1); }
+  }
+}
+
+/* Arama */
+.search-input {
+  position: relative;
+  input {
+    width: 100%;
+    padding: 0.6rem 0.6rem 0.6rem 2.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    &:focus { outline: none; border-color: var(--primary-color); }
+  }
+  i {
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+}
+
+/* Custom Checkbox */
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  .custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    user-select: none;
+    
+    &:hover { color: var(--text-main); }
+
+    input { display: none; } /* Orjinal checkbox'ı gizle */
+
+    .checkmark {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border-color);
+      border-radius: 4px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    input:checked ~ .checkmark {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    input:checked ~ .checkmark:after {
+      content: '✔';
+      color: white;
+      font-size: 0.7rem;
+    }
+  }
+}
+
+/* --- MAIN CONTENT --- */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+
+  .result-text { color: var(--text-muted); font-size: 0.95rem; strong { color: var(--text-main); }}
+
+  .sort-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    .label { color: var(--text-muted); font-size: 0.9rem; }
+    
+    select {
+      padding: 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      background: var(--bg-input);
+      color: var(--text-main);
+      cursor: pointer;
+      font-size: 0.9rem;
+      &:focus { outline: none; border-color: var(--primary-color); }
+    }
+  }
+}
+
+.products-grid {
+  display: grid;
+  /* Responsive Grid: Kartlar küçüldükçe sığdığı kadar yan yana koy */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  
+  .page-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    
+    &:hover:not(.disabled) {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    
+    &.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  .shop-container {
+    grid-template-columns: 1fr; /* Sidebar'ı akıştan çıkar */
+    gap: 1.5rem;
+  }
+
+  /* Sidebar'ı mobilde gizleyelim (İleride off-canvas menü yapılabilir) */
+  .filters-sidebar {
+    display: none; 
+    /* Mobil tasarımda burayı açılır kapanır yapmak gerekir */
+  }
+
+  .mobile-filter-toggle {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}

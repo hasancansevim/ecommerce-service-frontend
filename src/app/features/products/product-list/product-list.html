@@ -1,0 +1,78 @@
+<div class="shop-container">
+
+    <button class="mobile-filter-toggle">
+        <i class="fa-solid fa-filter"></i> Filtrele ve Sırala
+    </button>
+
+    <aside class="filters-sidebar">
+
+        <div class="filter-group">
+            <h3 class="filter-title">Ürün Ara</h3>
+            <div class="search-input">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Model, marka...">
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <h3 class="filter-title">Kategoriler</h3>
+            <ul class="category-list">
+                <li class="active">Tümü <span>(120)</span></li>
+                <li *ngFor="let category of categories">{{category.name}}</li>
+            </ul>
+        </div>
+
+        <div class="filter-group">
+            <h3 class="filter-title">Fiyat Aralığı</h3>
+            <div class="price-inputs">
+                <input type="number" placeholder="Min" class="price-field">
+                <span class="dash">-</span>
+                <input type="number" placeholder="Max" class="price-field">
+                <button class="go-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <h3 class="filter-title">Mağazalar</h3>
+            <div class="checkbox-list">
+                <label *ngFor="let store of stores" class="custom-checkbox">
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                    {{store.name}}
+                </label>
+            </div>
+        </div>
+
+    </aside>
+
+    <main class="product-grid-area">
+
+        <div class="top-bar">
+            <p class="result-text"><strong>{{products.length}}</strong> ürün listeleniyor</p>
+
+            <div class="sort-dropdown">
+                <span class="label">Sırala:</span>
+                <select>
+                    <option>Önerilen Sıralama</option>
+                    <option>En Düşük Fiyat</option>
+                    <option>En Yüksek Fiyat</option>
+                    <option>En Yeniler</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <app-product-card *ngFor="let product of products" [product]="product">
+            </app-product-card>
+        </div>
+
+        <div class="pagination">
+            <button class="page-btn disabled"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+    </main>
+</div>
