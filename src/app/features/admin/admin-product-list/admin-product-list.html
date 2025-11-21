@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr *ngFor="let product of products">
                         <td>
                             <div class="product-cell">
                                 <img [src]="product.image_url" alt="img" class="thumb">
@@ -39,7 +39,7 @@
                         <td>
                             <div class="price-cell">
                                 <span class="curr">{{ product.price }} ₺</span>
-                                <span class="base" *ngIf="product.base_price > product.price">{{ product.base_price }}
+                                <span class="base" *ngIf="product.base_price">{{ product.base_price }}
                                     ₺</span>
                             </div>
                         </td>
@@ -60,8 +60,8 @@
                             <button class="btn-icon edit" [routerLink]="['/admin/products/edit', product.id]">
                                 <i class="icon-edit"></i> Düzenle
                             </button>
-                            <button class="btn-icon delete">
-                                <i class="icon-trash"></i>
+                            <button class="btn-icon delete" (click)="deleteProduct(product.id,product.name)">
+                                <i class="icon-trash"></i> Sil
                             </button>
                         </td>
                     </tr>

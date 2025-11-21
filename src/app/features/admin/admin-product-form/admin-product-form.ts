@@ -8,47 +8,48 @@ import { Category } from '../../../shared/models/category';
 import { StoreService } from '../../../core/services/store/store-service';
 import { CategoryService } from '../../../core/services/category/category-service';
 import { ProductService } from '../../../core/services/product/product-service';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Product } from '../../../shared/models/product';
 
 @Component({
   selector: 'app-admin-product-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './admin-product-form.html',
   styleUrl: './admin-product-form.scss',
 })
 export class AdminProductForm implements OnInit {
-  productAddForm: FormGroup;
+  productForm: FormGroup;
+  updateProductForm: FormGroup;
   stores: Store[] = [];
   categories: Category[] = [];
   isEditMode = false;
+  productId: string | null = null;
+  updatedProduct!: Product;
 
   constructor(
     private formBuilder: FormBuilder,
     private productService: ProductService,
     private storeService: StoreService,
-    private categoryService: CategoryService
-  ) {}
+    private categoryService: CategoryService,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.productForm = this.createProductForm();
+  }
 
   ngOnInit(): void {
-    this.createProductAddForm();
-    this.getCategories();
-    this.getStores();
+    this.productId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.isEditMode = !!this.productId;
+
+    this.loadData();
+
+    if (this.isEditMode) {
+      this.loadProductData(this.productId);
+    }
   }
 
-  getCategories(): void {
-    this.categoryService.getCategories().subscribe((response) => {
-      this.categories = response.data;
-    });
-  }
-
-  getStores(): void {
-    this.storeService.getStores().subscribe((response) => {
-      this.stores = response.data;
-    });
-  }
-
-  createProductAddForm() {
-    this.productAddForm = this.formBuilder.group({
+  createProductForm(): FormGroup {
+    return this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       slug: ['', Validators.required],
       description: ['', Validators.required],
@@ -65,28 +66,120 @@ export class AdminProductForm implements OnInit {
     });
   }
 
-  addProduct() {
-    if (this.productAddForm.valid) {
-      let productModel = Object.assign({}, this.productAddForm.value);
-      productModel.discount = this.calculateDiscount(productModel.price, productModel.basePrice);
-      productModel.storeId = Number(productModel.storeId);
-      productModel.categoryId = Number(productModel.categoryId);
-      this.productService.addProduct(productModel).subscribe(
-        (response) => {
-          console.log('Ürün Eklendi');
-        },
-        (errorResponse) => {
-          console.log('Bir Hata Oluştu :', errorResponse);
-          console.log('ProductModel : ', productModel);
-        }
-      );
+  saveProduct(): void {
+    if (this.productForm.invalid) {
+      this.markFormGroupTouched();
+      return;
+    }
+
+    const formData = this.prepareFormData();
+
+    if (this.isEditMode) {
+      this.updateProduct(this.productId, formData);
+    } else {
+      this.addProduct(formData);
     }
   }
 
-  calculateDiscount(price: number, basePrice: number): number {
-    if (basePrice > price && basePrice > 0) {
-      return Math.round(((basePrice - price) / basePrice) * 100);
+  addProduct(formData: any): void {
+    console.log(typeof formData);
+    console.log(formData);
+    // service Product tipi bekliyor
+    this.productService.addProduct(formData).subscribe({
+      next: (response) => {
+        console.log('Response : ', response);
+      },
+      error: (errorResponse) => {
+        console.log('Error Response : ', errorResponse);
+      },
+    });
+  }
+
+  updateProduct(productId: any, formData: any) {
+    console.log(typeof productId);
+    console.log(typeof formData);
+    this.productService.updateProduct(formData, productId).subscribe({
+      next: (response) => {
+        console.log('Response : ', response);
+      },
+      error: (errorResponse) => {
+        console.log('Error Response : ', errorResponse);
+      },
+    });
+  }
+
+  prepareFormData(): any {
+    const formValue = this.productForm.value;
+    return {
+      name: formValue.name,
+      slug: formValue.slug,
+      description: formValue.description,
+      price: Number(formValue.price),
+      basePrice: Number(formValue.basePrice),
+      discount: this.calculateDiscount(formValue.price, formValue.basePrice),
+      imageUrl: formValue.imageUrl,
+      metaDescription: formValue.metaDescription,
+      stockQuantity: Number(formValue.stockQuantity),
+      isActive: Boolean(formValue.isActive),
+      isFeatured: Boolean(formValue.isFeatured),
+      categoryId: Number(formValue.categoryId),
+      storeId: Number(formValue.storeId),
+    };
+  }
+
+  markFormGroupTouched(): void {
+    Object.keys(this.productForm.controls).forEach((key) => {
+      const control = this.productForm.get(key);
+      control?.markAsTouched();
+    });
+  }
+
+  loadData() {
+    this.getCategories();
+    this.getStores();
+  }
+
+  loadProductData(id: any): void {
+    if (id) {
+      this.productService.getProductById(id).subscribe({
+        next: (response) => {
+          const product = response.data;
+
+          this.productForm.patchValue({
+            name: product.name,
+            slug: product.slug,
+            description: product.description,
+            price: product.price,
+            basePrice: product.base_price,
+            discount: product.discount || this.calculateDiscount(product.price, product.base_price),
+            imageUrl: product.image_url,
+            metaDescription: product.meta_description,
+            stockQuantity: product.stock_quantity,
+            isActive: product.is_active,
+            isFeatured: product.is_featured,
+            categoryId: product.category_id,
+            storeId: product.store_id,
+          });
+        },
+        error: (errorResponse) => {
+          console.log(errorResponse);
+        },
+      });
     }
-    return 0;
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe((response) => {
+      this.categories = response.data;
+    });
+  }
+  getStores() {
+    this.storeService.getStores().subscribe((response) => {
+      this.stores = response.data;
+    });
+  }
+
+  calculateDiscount(price: number, basePrice: number): number {
+    return 1;
   }
 }

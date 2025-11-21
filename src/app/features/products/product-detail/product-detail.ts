@@ -21,12 +21,12 @@ export class ProductDetail implements OnInit {
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
-        this.getProductById(Number(id));
+        this.getProductById(id);
       }
     });
   }
 
-  getProductById(id: number): void {
+  getProductById(id: string): void {
     this.productService.getProductById(id).subscribe((response) => {
       this.product = response.data;
     });

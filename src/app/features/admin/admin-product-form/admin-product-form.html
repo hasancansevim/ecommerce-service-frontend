@@ -4,7 +4,7 @@
         <button type="button" class="btn-secondary" routerLink="/admin/products">İptal</button>
     </div>
 
-    <form [formGroup]="productAddForm" class="product-form" (ngSubmit)="addProduct()">
+    <form [formGroup]="productForm" class="product-form" (ngSubmit)="saveProduct()">
         <div class="form-grid">
             <div class="form-section main-info">
 
@@ -76,9 +76,9 @@
                             <input id="basePrice" type="number" formControlName="basePrice" min="0" step="0.01" />
                             <span class="suffix">₺</span>
                         </div>
-                        <small *ngIf="productAddForm.value.price && productAddForm.value.basePrice">
-                            İndirim oranı: %{{ calculateDiscount(productAddForm.value.price,
-                            productAddForm.value.basePrice) }}
+                        <small *ngIf="productForm.value.price && productForm.value.basePrice">
+                            İndirim oranı: %{{ calculateDiscount(productForm.value.price,
+                            productForm.value.basePrice) }}
                         </small>
                     </div>
                 </div>
@@ -99,8 +99,8 @@
                         <label for="imageUrl">Görsel URL</label>
                         <input id="imageUrl" type="text" formControlName="imageUrl" placeholder="https://..." />
                     </div>
-                    <div class="img-preview" *ngIf="productAddForm.value.imageUrl">
-                        <img [src]="productAddForm.value.imageUrl" alt="Önizleme" class="preview-image">
+                    <div class="img-preview" *ngIf="productForm.value.imageUrl">
+                        <img [src]="productForm.value.imageUrl" alt="Önizleme" class="preview-image">
                     </div>
                 </div>
 
@@ -120,7 +120,7 @@
         </div>
 
         <div class="form-actions">
-            <button type="submit" class="btn-primary save-btn" [disabled]="productAddForm.invalid">
+            <button type="submit" class="btn-primary save-btn" [disabled]="productForm.invalid">
                 {{ isEditMode ? 'Değişiklikleri Kaydet' : 'Ürünü Oluştur' }}
             </button>
         </div>
