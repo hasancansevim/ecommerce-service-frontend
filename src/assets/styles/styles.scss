@@ -1,0 +1,36 @@
+/* src/styles.scss */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* --- LIGHT MODE (Varsayılan) --- */
+  --primary-color: #2563eb;
+  --bg-body: #f8fafc;        /* Genel Arka Plan */
+  --bg-card: #ffffff;        /* Kartlar ve Navbar Arka Planı */
+  --bg-input: #f8fafc;       /* Arama kutusu vb. */
+  --text-main: #1e293b;      /* Ana Metin */
+  --text-muted: #64748b;     /* Silik Metin */
+  --border-color: #e2e8f0;   /* Çizgiler */
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+body.dark {
+  /* --- DARK MODE --- */
+  --primary-color: #3b82f6;
+  --bg-body: #0f172a;        /* Koyu Lacivert Arka Plan */
+  --bg-card: #1e293b;        /* Kartlar için daha açık lacivert */
+  --bg-input: #334155;       /* Inputlar karttan biraz farklı olsun */
+  --text-main: #f8fafc;      /* Metinler Beyaz */
+  --text-muted: #94a3b8;     /* Silik metinler açık gri */
+  --border-color: #334155;   /* Çizgiler koyu gri */
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); /* Gölgeler daha belirgin */
+}
+
+/* Genel Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-body); /* BURASI KRİTİK */
+  color: var(--text-main);          /* BURASI KRİTİK */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

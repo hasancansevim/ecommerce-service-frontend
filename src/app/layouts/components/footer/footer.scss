@@ -1,8 +1,9 @@
 .site-footer {
-  background: #1e293b; /* Çok koyu lacivert/gri */
-  color: #cbd5e1;
+  background: var(--bg-card); /* Değişken! */
+  color: var(--text-muted);   /* Değişken! */
   padding-top: 4rem;
   font-size: 0.9rem;
+  border-top: 1px solid var(--border-color); /* Üstüne çizgi ekledik */
 
   .container {
     max-width: 1200px;
@@ -14,22 +15,21 @@
     padding-bottom: 3rem;
   }
 
-  h3 { color: #fff; margin-bottom: 1rem; }
-  h4 { color: #fff; margin-bottom: 1rem; font-size: 1rem; }
+  h3 { color: var(--text-main); margin-bottom: 1rem; } /* Değişken! */
+  h4 { color: var(--text-main); margin-bottom: 1rem; font-size: 1rem; } /* Değişken! */
 
   .footer-col {
     ul {
       list-style: none;
       padding: 0;
-      
       li { margin-bottom: 0.5rem; }
       
       a {
-        color: #94a3b8;
+        color: var(--text-muted); /* Değişken! */
         text-decoration: none;
         transition: color 0.2s;
         
-        &:hover { color: #fff; }
+        &:hover { color: var(--primary-color); }
       }
     }
 
@@ -40,23 +40,21 @@
   }
 
   .sub-footer {
-    border-top: 1px solid #334155;
+    border-top: 1px solid var(--border-color); /* Değişken! */
     padding: 1.5rem 0;
     text-align: center;
-    color: #64748b;
+    color: var(--text-muted); /* Değişken! */
     font-size: 0.8rem;
   }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .site-footer .container {
-    grid-template-columns: 1fr; /* Mobilde tek sütun */
+    grid-template-columns: 1fr;
     gap: 2.5rem;
     text-align: center;
   }
-  
   .footer-col.contact-col p {
-    justify-content: center; /* İletişim bilgilerini ortala */
+    justify-content: center;
   }
 }

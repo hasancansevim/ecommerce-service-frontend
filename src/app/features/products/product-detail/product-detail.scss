@@ -3,22 +3,23 @@
   margin: 2rem auto;
   padding: 0 1.5rem;
   min-height: 80vh;
+  color: var(--text-main); /* Ana metin rengi */
 }
 
 /* Breadcrumb */
 .breadcrumb {
   margin-bottom: 2rem;
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--text-muted);
   
   a {
     text-decoration: none;
-    color: #64748b;
+    color: var(--text-muted);
     transition: color 0.2s;
-    &:hover { color: #2563eb; }
+    &:hover { color: var(--primary-color); }
   }
-  .separator { margin: 0 0.5rem; color: #cbd5e1; }
-  .current { color: #1e293b; font-weight: 500; }
+  .separator { margin: 0 0.5rem; color: var(--border-color); }
+  .current { color: var(--text-main); font-weight: 500; }
 }
 
 /* Grid Layout */
@@ -32,12 +33,12 @@
 /* Sol Taraf - Görsel */
 .product-gallery {
   .main-image {
-    background: #f8fafc;
+    background: var(--bg-input);
     border-radius: 16px;
     overflow: hidden;
     position: relative;
     aspect-ratio: 1/1; /* Kare */
-    border: 1px solid #f1f5f9;
+    border: 1px solid var(--border-color);
 
     img {
       width: 100%;
@@ -64,7 +65,7 @@
 /* Sağ Taraf - Bilgi */
 .product-info {
   .brand-tag {
-    color: #2563eb;
+    color: var(--primary-color);
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -75,7 +76,7 @@
 
   .title {
     font-size: 2.5rem;
-    color: #1e293b;
+    color: var(--text-main);
     margin-bottom: 1rem;
     line-height: 1.2;
   }
@@ -86,7 +87,7 @@
     gap: 0.25rem;
     margin-bottom: 1.5rem;
     .text-yellow { color: #fbbf24; }
-    .count { color: #94a3b8; font-size: 0.9rem; margin-left: 0.5rem; }
+    .count { color: var(--text-muted); font-size: 0.9rem; margin-left: 0.5rem; }
   }
 
   .price-block {
@@ -95,22 +96,22 @@
     gap: 1rem;
     margin-bottom: 2rem;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid var(--border-color);
 
     .current-price {
       font-size: 2rem;
       font-weight: 800;
-      color: #0f172a;
+      color: var(--text-main);
     }
     .old-price {
       font-size: 1.2rem;
-      color: #94a3b8;
+      color: var(--text-muted);
       text-decoration: line-through;
     }
   }
 
   .description {
-    color: #475569;
+    color: var(--text-muted);
     line-height: 1.7;
     margin-bottom: 2rem;
     font-size: 1.05rem;
@@ -134,34 +135,36 @@
 
     .quantity-selector {
       display: flex;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-color);
       border-radius: 8px;
       overflow: hidden;
       
       button {
         width: 40px;
-        background: #f8fafc;
+        background: var(--bg-input);
         border: none;
         cursor: pointer;
         font-weight: 600;
-        &:hover { background: #e2e8f0; }
+        color: var(--text-main);
+        &:hover { background: var(--bg-card); }
       }
       
       input {
         width: 50px;
         text-align: center;
         border: none;
-        border-left: 1px solid #e2e8f0;
-        border-right: 1px solid #e2e8f0;
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+        background: var(--bg-card);
         font-weight: 600;
-        color: #1e293b;
+        color: var(--text-main);
         &:focus { outline: none; }
       }
     }
 
     .add-to-cart-btn {
       flex: 1;
-      background: #2563eb;
+      background: var(--primary-color);
       color: white;
       border: none;
       border-radius: 8px;
@@ -184,22 +187,26 @@
 
     .wishlist-btn {
       width: 50px;
-      border: 1px solid #e2e8f0;
-      background: white;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
       border-radius: 8px;
       cursor: pointer;
-      color: #64748b;
+      color: var(--text-muted);
       font-size: 1.2rem;
       transition: all 0.2s;
+      display: flex;           /* İkonu ortalamak için */
+      align-items: center;     /* İkonu ortalamak için */
+      justify-content: center; /* İkonu ortalamak için */
+
       &:hover { border-color: #ef4444; color: #ef4444; }
     }
   }
 
   .meta-info p {
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
-    strong { color: #334155; margin-right: 0.5rem; }
+    strong { color: var(--text-main); margin-right: 0.5rem; }
   }
 }
 

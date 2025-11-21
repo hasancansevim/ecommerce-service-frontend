@@ -1,23 +1,23 @@
 :host {
   display: block;
-  height: 100%; /* Grid hücresini tam doldurması için */
+  height: 100%;
 }
 
 .product-card {
-  background: #fff;
-  border: none; /* Çizgiyi kaldırdık, gölgeyle ayıracağız */
-  border-radius: 16px; /* Köşeleri daha çok yuvarladık */
+  background: var(--bg-card); /* Değişken! */
+  border: 1px solid transparent; /* Sınır, dark modda belirginleşsin diye */
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* Hafif ama derin gölge */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  box-shadow: var(--shadow); /* Global shadow değişkeni varsa */
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-color: var(--border-color);
     
     .card-img-wrapper img { transform: scale(1.08); }
     .wishlist-btn { opacity: 1; transform: translateX(0); }
@@ -25,8 +25,8 @@
 
   .card-img-wrapper {
     position: relative;
-    padding-top: 100%; /* 1:1 Kare Oran Garantisi */
-    background: #f1f5f9;
+    padding-top: 100%;
+    background: var(--bg-input); /* Değişken! Resim yoksa input rengi */
     overflow: hidden;
 
     img {
@@ -40,7 +40,7 @@
     .badge {
       position: absolute;
       top: 12px; left: 12px;
-      background: #ef4444;
+      background: #ef4444; /* İndirim kırmızısı sabit kalabilir */
       color: white;
       font-size: 0.75rem;
       font-weight: 700;
@@ -55,14 +55,14 @@
       top: 12px; right: 12px;
       width: 36px; height: 36px;
       border-radius: 50%;
-      background: white;
+      background: var(--bg-card); /* Değişken! */
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #334155;
-      opacity: 0; /* Hoverda gelecek */
+      color: var(--text-main); /* Değişken! */
+      opacity: 0;
       transform: translateX(10px);
       transition: all 0.3s ease;
       z-index: 2;
@@ -78,7 +78,7 @@
 
     .category-text {
       font-size: 0.7rem;
-      color: #94a3b8;
+      color: var(--text-muted); /* Değişken! */
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -87,11 +87,10 @@
 
     .product-title {
       font-size: 1.05rem;
-      color: #1e293b;
+      color: var(--text-main); /* Değişken! */
       font-weight: 600;
       margin-bottom: 0.5rem;
       line-height: 1.4;
-      /* Metin taşmasını engelle */
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -110,11 +109,11 @@
         .current-price {
           font-size: 1.35rem;
           font-weight: 700;
-          color: #0f172a;
+          color: var(--text-main); /* Değişken! */
         }
         .base-price {
           font-size: 0.9rem;
-          color: #cbd5e1;
+          color: var(--text-muted); /* Değişken! */
           text-decoration: line-through;
         }
       }
@@ -123,7 +122,7 @@
     .add-btn {
       width: 100%;
       padding: 0.8rem;
-      background: #2563eb; /* Canlı Mavi */
+      background: var(--primary-color); /* Değişken! */
       color: white;
       border: none;
       border-radius: 10px;
@@ -135,8 +134,8 @@
       gap: 0.5rem;
       transition: background 0.2s;
 
-      &:hover { background: #1d4ed8; }
-      &:disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
+      &:hover { filter: brightness(1.1); } /* Hover rengi otomatik */
+      &:disabled { background: var(--bg-input); color: var(--text-muted); cursor: not-allowed; }
     }
   }
 }

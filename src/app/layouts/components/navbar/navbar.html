@@ -20,5 +20,10 @@
                 <span class="badge">2</span>
             </a>
         </nav>
+
+        <button class="theme-btn" (click)="themeService.toggleTheme()">
+            <i class="fa-solid" [class.fa-sun]="themeService.isDarkMode()"
+                [class.fa-moon]="!themeService.isDarkMode()"></i>
+        </button>
     </div>
 </header>
